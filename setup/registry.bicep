@@ -8,6 +8,6 @@ resource acr 'Microsoft.ContainerRegistry/registries@2021-06-01-preview' = {
   }
   properties: {
     adminUserEnabled: true
-    anonymousPullEnabled: true
+    anonymousPullEnabled: false
   }
 }

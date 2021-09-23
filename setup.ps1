@@ -1,7 +1,7 @@
 set-location -Path .\BicepModuleGallery\  # <-- set path to root of project
 
 $RGName = 'ACU1-BRW-AOA-RG-D2'
-$registryTemplate = 'D:\Repos\BicepModuleGallery\setup\registry.bicep'
+$registryTemplate = '.\setup\registry.bicep'
 $registryName = 'myuniqueName54'
 
 #region create registry

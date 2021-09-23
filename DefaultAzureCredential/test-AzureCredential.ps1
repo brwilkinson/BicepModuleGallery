@@ -6,11 +6,19 @@ $cred = [Azure.Identity.DefaultAzureCredential]::new()
 
 # The easiest way to load them is via Az.Accounts Module
 install-module az.accounts
-import-module Az.Accounts
+import-module Az.Accounts -force
 
 # now test again.
 #> lets get a token with the following
-$cred = [Azure.Identity.DefaultAzureCredential]::new()
+remove-variable -name token -EA 0
+$options = [Azure.Identity.DefaultAzureCredentialOptions]::new()
+$options.ExcludeEnvironmentCredential = $true
+# $options.ExcludeAzureCliCredential = $true
+$options.ExcludeAzurePowerShellCredential = $true
+$options.ExcludeVisualStudioCredential = $true
+$options.ExcludeVisualStudioCodeCredential = $true
+$options.ExcludeManagedIdentityCredential = $true
+$cred = [Azure.Identity.DefaultAzureCredential]::new($options)
 $resourceid = 'https://management.azure.com/.default'
 $Scope = [Azure.Core.TokenRequestContext]::new($resourceid,'myclient' )
 $token = $cred.GetToken($scope,[System.Threading.CancellationToken]::None)
